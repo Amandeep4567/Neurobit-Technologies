@@ -17,7 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { fontSize, height } from "@mui/system";
-import { Stepper } from ".";
+import { DropdownBox, Stepper } from ".";
 
 const drawerWidth = 240;
 
@@ -136,6 +136,8 @@ function Sidebar() {
           }}
         >
           <Stepper />
+          <DropdownBox />
+
           <Toolbar />
         </Box>
       </Box>

@@ -1,0 +1,16 @@
+.dropdown {
+  margin-top: 30px;
+}
+
+.big_reactangle {
+  width: 100%;
+  height: 500px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.small_reactangle {
+  width: 80%;
+  /* height: 30%; */
+  background-color: #dcdcdc;
+}

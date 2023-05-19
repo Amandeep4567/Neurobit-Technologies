@@ -1,5 +1,6 @@
 import React from "react";
 import { Sidebar, Stepper, DropdownBox, BackNext } from "../components";
+import "../styles/pageStyles/homepage.css";
 
 const Homepage = () => {
   return (
@@ -7,7 +8,6 @@ const Homepage = () => {
       <div className="homepage">
         <Sidebar />
         <div className="models">
-          <DropdownBox />
           <BackNext />
         </div>
       </div>
