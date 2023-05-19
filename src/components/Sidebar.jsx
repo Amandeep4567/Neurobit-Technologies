@@ -16,8 +16,9 @@ import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { fontSize, height } from "@mui/system";
+import { bgcolor, fontSize, height, textAlign } from "@mui/system";
 import { DropdownBox, Stepper } from ".";
+import { FormatAlignJustify, Opacity, WrapText } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -42,7 +43,16 @@ function Sidebar() {
       <List>
         {["Dashboard", "Montages", "Credits"].map((text, index) => (
           <ListItem sx={{ color: "white" }} key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              sx={
+                index === 1
+                  ? {
+                      background: "rgba(44, 169, 227, 0.25)",
+                      borderLeft: "4px solid #2CA9E3",
+                    }
+                  : undefined
+              }
+            >
               <ListItemIcon sx={{ color: "white" }}>
                 {index === 0 ? (
                   <DashboardIcon />
@@ -56,6 +66,28 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         ))}
+        {/* <div className="bottom_box">
+          <h2>1,650</h2>
+          <p>Total Credits Available</p>
+        </div> */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+            bgcolor: "#02354F",
+            paddingY: "40px",
+            marginTop: "80%",
+            marginX: "10px",
+            color: "white",
+            lineHeight: "40px",
+          }}
+        >
+          <div>
+            <Typography variant="h5">1,650</Typography>
+            <Typography variant="h8">Total Credits Available</Typography>
+          </div>
+        </Box>
       </List>
     </div>
   );

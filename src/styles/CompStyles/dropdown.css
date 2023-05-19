@@ -4,13 +4,26 @@
 
 .big_reactangle {
   width: 100%;
-  height: 500px;
+  height: 400px;
   background: #fff;
   border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .small_reactangle {
-  width: 80%;
-  /* height: 30%; */
+  width: 96%;
+  height: 350px;
   background-color: #dcdcdc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown img {
+  width: 150px;
+  height: 160px;
+  cursor: pointer;
 }

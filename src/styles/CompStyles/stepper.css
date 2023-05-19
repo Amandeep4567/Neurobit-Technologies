@@ -1,0 +1,20 @@
+.upper_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 27px;
+}
+
+.upper_name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upper_name img {
+  margin-right: 10px;
+}
+
+.upper_name h5 {
+  font-weight: 500;
+}

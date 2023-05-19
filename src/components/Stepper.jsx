@@ -1,4 +1,5 @@
 import "../styles/CompStyles/stepper.css";
+import icon from "../assets/icon.png";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -10,8 +11,12 @@ const steps = ["Upload EDFs", "Map Channels", "Save & Preview"];
 export default function HorizontalLabelPositionBelowStepper() {
   return (
     <div>
-      <div className="">
+      <div className="upper_box">
         <h2>Test_Study</h2>
+        <div className="upper_name">
+          <img src={icon} alt="" />
+          <h5>Amandeep Kumar</h5>
+        </div>
       </div>
       <Box
         sx={{
