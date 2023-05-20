@@ -1,6 +1,10 @@
 import React from "react";
 import { Sidebar, Stepper, DropdownBox, BackNext } from "../components";
+import { Box } from "@mui/system";
+import { Toolbar } from "@mui/material";
 import "../styles/pageStyles/homepage.css";
+
+const drawerWidth = 240;
 
 const Homepage = () => {
   return (
@@ -8,7 +12,22 @@ const Homepage = () => {
       <div className="homepage">
         <Sidebar />
         <div className="models">
-          <BackNext />
+          <Box sx={{ display: "flex" }}>
+            <Box
+              component="main"
+              sx={{
+                flexGrow: 1,
+                p: 3,
+                width: { sm: `calc(100% - ${drawerWidth}px)` },
+              }}
+            >
+              <Stepper />
+              <DropdownBox />
+              <BackNext />
+
+              <Toolbar />
+            </Box>
+          </Box>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { bgcolor, fontSize, height, textAlign } from "@mui/system";
-import { DropdownBox, Stepper } from ".";
+import { DropdownBox, Stepper, BackNext } from ".";
 import { FormatAlignJustify, Opacity, WrapText } from "@mui/icons-material";
 
 const drawerWidth = 240;
@@ -66,10 +66,6 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         ))}
-        {/* <div className="bottom_box">
-          <h2>1,650</h2>
-          <p>Total Credits Available</p>
-        </div> */}
         <Box
           sx={{
             display: "flex",
@@ -77,15 +73,16 @@ function Sidebar() {
             textAlign: "center",
             bgcolor: "#02354F",
             paddingY: "40px",
-            marginTop: "80%",
+            marginTop: "92%",
             marginX: "10px",
             color: "white",
             lineHeight: "40px",
+            borderRadius: "4px",
           }}
         >
           <div>
             <Typography variant="h5">1,650</Typography>
-            <Typography variant="h8">Total Credits Available</Typography>
+            <Typography variant="h7">Total Credits Available</Typography>
           </div>
         </Box>
       </List>
@@ -158,19 +155,6 @@ function Sidebar() {
           >
             {drawer}
           </Drawer>
-        </Box>
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-          }}
-        >
-          <Stepper />
-          <DropdownBox />
-
-          <Toolbar />
         </Box>
       </Box>
     </div>
