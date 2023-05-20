@@ -73,7 +73,7 @@ function Sidebar() {
             textAlign: "center",
             bgcolor: "#02354F",
             paddingY: "40px",
-            marginTop: "92%",
+            marginTop: "80%",
             marginX: "10px",
             color: "white",
             lineHeight: "40px",
