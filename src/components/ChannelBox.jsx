@@ -1,8 +1,6 @@
 import "../styles/CompStyles/channelbox.css";
 import React, { useEffect } from "react";
-// import { Select, MenuItem } from "@mui/material";
 import { useState } from "react";
-// import { Box } from "@mui/system";
 import {
   Box,
   Button,
@@ -25,7 +23,8 @@ const ChannelBox = () => {
   console.log(channelData);
 
   const [primaryChannel, setPrimaryChannel] = useState([]);
-  const [refChannel, setrefChannel] = useState([]);
+  const [refChannel, setRefChannel] = useState([]);
+  const [dropdownOpen, setDropdownOpen] = useState([]);
 
   const handlePrimaryColorChange = (index, event) => {
     const updatedValues = [...primaryChannel];
@@ -33,33 +32,17 @@ const ChannelBox = () => {
     setPrimaryChannel(updatedValues);
   };
 
-  const handlerefChannelChange = (index, event) => {
+  const handleRefChannelChange = (index, event) => {
     const updatedValues = [...refChannel];
     updatedValues[index] = event.target.value;
-    setrefChannel(updatedValues);
+    setRefChannel(updatedValues);
   };
-
-  const [dropdownOpen, setDropdownOpen] = useState([]);
-  // const [primaryChannel, setPrimaryChannel] = useState([]);
-  // const [refChannel, setRefChannel] = useState([]);
 
   const handleToggleDropdown = (index) => {
     const updatedDropdownOpen = [...dropdownOpen];
     updatedDropdownOpen[index] = !updatedDropdownOpen[index];
     setDropdownOpen(updatedDropdownOpen);
   };
-
-  // const handlePrimaryChannelChange = (index, event) => {
-  //   const updatedValues = [...primaryChannel];
-  //   updatedValues[index] = event.target.value;
-  //   setPrimaryChannel(updatedValues);
-  // };
-
-  // const handleRefChannelChange = (index, event) => {
-  //   const updatedValues = [...refChannel];
-  //   updatedValues[index] = event.target.value;
-  //   setRefChannel(updatedValues);
-  // };
 
   return (
     <div className="map_channels">
@@ -86,44 +69,51 @@ const ChannelBox = () => {
               <Select
                 value={primaryChannel[index] || ""}
                 onChange={(event) => handlePrimaryColorChange(index, event)}
-                placeholder="Select an option"
                 sx={{
                   marginTop: 0,
-                  width: 250,
+                  width: 200,
                   height: 42,
                 }}
+                displayEmpty
               >
-                <MenuItem value={1}>String1</MenuItem>
-                <MenuItem value={2}>String2</MenuItem>
-                <MenuItem value={3}>String3</MenuItem>
-                <MenuItem value={4}>String4</MenuItem>
-                <MenuItem value={5}>String5</MenuItem>
-                <MenuItem value={6}>String6</MenuItem>
-                <MenuItem value={7}>String7</MenuItem>
-                <MenuItem value={8}>String8</MenuItem>
-                <MenuItem value={9}>String9</MenuItem>
-                <MenuItem value={10}>String10</MenuItem>
+                <MenuItem value="" disabled>
+                  Select
+                </MenuItem>
+                <MenuItem value="String1">String1</MenuItem>
+                <MenuItem value="String2">String2</MenuItem>
+                <MenuItem value="String3">String3</MenuItem>
+                <MenuItem value="String4">String4</MenuItem>
+                <MenuItem value="String5">String5</MenuItem>
+                <MenuItem value="String6">String6</MenuItem>
+                <MenuItem value="String7">String7</MenuItem>
+                <MenuItem value="String8">String8</MenuItem>
+                <MenuItem value="String9">String9</MenuItem>
+                <MenuItem value="String10">String10</MenuItem>
               </Select>
 
               <Select
                 value={refChannel[index] || ""}
-                onChange={(event) => handlerefChannelChange(index, event)}
+                onChange={(event) => handleRefChannelChange(index, event)}
                 sx={{
                   marginTop: 0,
-                  width: 250,
+                  width: 200,
                   height: 43,
                 }}
+                displayEmpty
               >
-                <MenuItem value={1}>String1</MenuItem>
-                <MenuItem value={2}>String2</MenuItem>
-                <MenuItem value={3}>String3</MenuItem>
-                <MenuItem value={4}>String4</MenuItem>
-                <MenuItem value={5}>String5</MenuItem>
-                <MenuItem value={6}>String6</MenuItem>
-                <MenuItem value={7}>String7</MenuItem>
-                <MenuItem value={8}>String8</MenuItem>
-                <MenuItem value={9}>String9</MenuItem>
-                <MenuItem value={10}>String10</MenuItem>
+                <MenuItem value="" disabled>
+                  Select
+                </MenuItem>
+                <MenuItem value="String1">String1</MenuItem>
+                <MenuItem value="String2">String2</MenuItem>
+                <MenuItem value="String3">String3</MenuItem>
+                <MenuItem value="String4">String4</MenuItem>
+                <MenuItem value="String5">String5</MenuItem>
+                <MenuItem value="String6">String6</MenuItem>
+                <MenuItem value="String7">String7</MenuItem>
+                <MenuItem value="String8">String8</MenuItem>
+                <MenuItem value="String9">String9</MenuItem>
+                <MenuItem value="String10">String10</MenuItem>
               </Select>
 
               <Box>
@@ -134,7 +124,7 @@ const ChannelBox = () => {
                   <h4>
                     {dropdownOpen[index]
                       ? "Hide Backup Channels"
-                      : "+ Add Backup channels"}
+                      : "+ Add Backup Channels"}
                   </h4>
                 </Button>
               </Box>
@@ -147,36 +137,65 @@ const ChannelBox = () => {
               }}
               in={dropdownOpen[index]}
             >
-              <Box sx={{ marginTop: "10px" }}>
+              <Box
+                sx={{
+                  marginTop: "10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <FormControl sx={{ marginBottom: "10px" }}>
-                  {/* <InputLabel id="primary-channel-label">
-                        Primary Channel
-                      </InputLabel>
                   <Select
-                    labelId="primary-channel-label"
+                    sx={{
+                      marginTop: 0,
+                      width: 200,
+                      height: 43,
+                    }}
+                    labelId={`primary-channel-label-${index}`}
                     value={primaryChannel[index] || ""}
-                    onChange={(event) =>
-                      handlePrimaryChannelChange(index, event)
-                    }
+                    onChange={(event) => handlePrimaryColorChange(index, event)}
                   >
-                    <MenuItem value="channel-1">Channel 1</MenuItem>
-                    <MenuItem value="channel-2">Channel 2</MenuItem>
-                    <MenuItem value="channel-3">Channel 3</MenuItem>
+                    <MenuItem value="" disabled>
+                      Select
+                    </MenuItem>
+                    <MenuItem value="String1">String1</MenuItem>
+                    <MenuItem value="String2">String2</MenuItem>
+                    <MenuItem value="String3">String3</MenuItem>
+                    <MenuItem value="String4">String4</MenuItem>
+                    <MenuItem value="String5">String5</MenuItem>
+                    <MenuItem value="String6">String6</MenuItem>
+                    <MenuItem value="String7">String7</MenuItem>
+                    <MenuItem value="String8">String8</MenuItem>
+                    <MenuItem value="String9">String9</MenuItem>
+                    <MenuItem value="String10">String10</MenuItem>
                   </Select>
                 </FormControl>
-                <FormControl>
-                  <InputLabel id="ref-channel-label">
-                        Ref Channel
-                      </InputLabel>
+                <FormControl sx={{ marginBottom: "10px" }}>
                   <Select
-                    labelId="ref-channel-label"
+                    sx={{
+                      marginTop: 0,
+                      width: 200,
+                      height: 43,
+                    }}
+                    labelId={`ref-channel-label-${index}`}
                     value={refChannel[index] || ""}
                     onChange={(event) => handleRefChannelChange(index, event)}
                   >
-                    <MenuItem value="channel-1">Channel 1</MenuItem>
-                    <MenuItem value="channel-2">Channel 2</MenuItem>
-                    <MenuItem value="channel-3">Channel 3</MenuItem>
-                  </Select> */}
+                    <MenuItem value="" disabled>
+                      Select
+                    </MenuItem>
+                    <MenuItem value="String1">String1</MenuItem>
+                    <MenuItem value="String2">String2</MenuItem>
+                    <MenuItem value="String3">String3</MenuItem>
+                    <MenuItem value="String4">String4</MenuItem>
+                    <MenuItem value="String5">String5</MenuItem>
+                    <MenuItem value="String6">String6</MenuItem>
+                    <MenuItem value="String7">String7</MenuItem>
+                    <MenuItem value="String8">String8</MenuItem>
+                    <MenuItem value="String9">String9</MenuItem>
+                    <MenuItem value="String10">String10</MenuItem>
+                  </Select>
                 </FormControl>
               </Box>
             </Collapse>
