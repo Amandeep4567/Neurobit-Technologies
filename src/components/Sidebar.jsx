@@ -72,7 +72,7 @@ function Sidebar() {
             justifyContent: "center",
             textAlign: "center",
             bgcolor: "#02354F",
-            paddingY: "40px",
+            paddingY: "30px",
             marginTop: "80%",
             marginX: "10px",
             color: "white",
