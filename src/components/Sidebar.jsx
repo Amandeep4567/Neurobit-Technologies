@@ -30,7 +30,7 @@ function Sidebar() {
   };
 
   const drawer = (
-    <div>
+    <Box sx={{ overflowY: "hidden" }}>
       <div className="react_test">
         <Typography
           variant="h6"
@@ -86,7 +86,7 @@ function Sidebar() {
           </div>
         </Box>
       </List>
-    </div>
+    </Box>
   );
 
   return (
