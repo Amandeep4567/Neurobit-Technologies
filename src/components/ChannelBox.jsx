@@ -112,6 +112,7 @@ const ChannelBox = () => {
                 <MenuItem value={4}>Green</MenuItem>
                 <MenuItem value={5}>Yellow</MenuItem>
               </Select>
+
               <Box>
                 <Button
                   sx={{ fontSize: "14px" }}
@@ -129,9 +130,9 @@ const ChannelBox = () => {
                       </InputLabel>
                       <Select
                         labelId="primary-channel-label"
-                        value={primaryColor[index] || ""}
+                        value={primaryChannel[index] || ""}
                         onChange={(event) =>
-                          handlePrimaryColorChange(index, event)
+                          handlePrimaryChannelChange(index, event)
                         }
                       >
                         <MenuItem value="channel-1">Channel 1</MenuItem>
@@ -145,8 +146,10 @@ const ChannelBox = () => {
                       </InputLabel>
                       <Select
                         labelId="ref-channel-label"
-                        value={refColor[index] || ""}
-                        onChange={(event) => handleRefColorChange(index, event)}
+                        value={refChannel[index] || ""}
+                        onChange={(event) =>
+                          handleRefChannelChange(index, event)
+                        }
                       >
                         <MenuItem value="channel-1">Channel 1</MenuItem>
                         <MenuItem value="channel-2">Channel 2</MenuItem>
