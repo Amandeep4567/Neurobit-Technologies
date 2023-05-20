@@ -8,7 +8,7 @@ import StepLabel from "@mui/material/StepLabel";
 
 const steps = ["Upload EDFs", "Map Channels", "Save & Preview"];
 
-export default function HorizontalLabelPositionBelowStepper() {
+export default function HorizontalLabelPositionBelowStepper(props) {
   return (
     <div>
       <div className="upper_box">
@@ -26,7 +26,7 @@ export default function HorizontalLabelPositionBelowStepper() {
           borderRadius: "8px",
         }}
       >
-        <Stepper alternativeLabel>
+        <Stepper activeStep={props.stepvalue} alternativeLabel>
           {steps.map((label) => (
             <Step className="circle" key={label}>
               <StepLabel sx={{ fontSize: "1.2rem" }}>{label}</StepLabel>

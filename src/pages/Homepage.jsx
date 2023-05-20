@@ -21,9 +21,9 @@ const Homepage = () => {
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
               }}
             >
-              <Stepper />
+              <Stepper stepvalue="0" />
               <DropdownBox />
-              <BackNext />
+              <BackNext backlink="/" forwardlink="/map-channels" />
 
               <Toolbar />
             </Box>
