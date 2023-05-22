@@ -11,32 +11,40 @@ import {
   Select,
 } from "@mui/material";
 import jsonData from "../data/schema.json";
+import stringsData from "../data/string.json";
 
 const ChannelBox = () => {
   useEffect(() => {
     const channelsData = jsonData.channels;
     localStorage.setItem("channelsData", JSON.stringify(channelsData));
   }, []);
-
   const stoString1Data = localStorage.getItem("channelsData");
   const channelData = JSON.parse(stoString1Data);
   console.log(channelData);
 
-  const [primaryChannel, setPrimaryChannel] = useState([]);
-  const [refChannel, setRefChannel] = useState([]);
+  useEffect(() => {
+    const stringData = stringsData.strings;
+    localStorage.setItem("stringData", JSON.stringify(stringData));
+  }, []);
+  const storeStringData = localStorage.getItem("stringData");
+  const dropdownData = JSON.parse(storeStringData);
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [dropdownValue, setDropdownValue] = useState("");
+
+  const handleDropdownChange = (event) => {
+    const selectedOption = event.target.value;
+    setDropdownValue(selectedOption); // setting selected option
+  };
+
+  const handleAddOption = () => {
+    if (dropdownValue && !selectedOptions.includes(dropdownValue)) {
+      setSelectedOptions([...selectedOptions, dropdownValue]); // adding the selected option to array
+      setDropdownValue(""); // resetting selected option
+    }
+  };
+
   const [dropdownOpen, setDropdownOpen] = useState([]);
-
-  const handlePrimaryColorChange = (index, event) => {
-    const updatedValues = [...primaryChannel];
-    updatedValues[index] = event.target.value;
-    setPrimaryChannel(updatedValues);
-  };
-
-  const handleRefChannelChange = (index, event) => {
-    const updatedValues = [...refChannel];
-    updatedValues[index] = event.target.value;
-    setRefChannel(updatedValues);
-  };
 
   const handleToggleDropdown = (index) => {
     const updatedDropdownOpen = [...dropdownOpen];
@@ -51,7 +59,7 @@ const ChannelBox = () => {
           <Box
             key={index}
             sx={{
-              backgroundColor: "white",
+              backgroundColor: "#ffffff",
               marginBottom: "10px",
               paddingTop: "20px",
               borderRadius: "5px",
@@ -67,64 +75,38 @@ const ChannelBox = () => {
               <h4>{channel}</h4>
 
               <Select
-                value={primaryChannel[index] || ""}
-                onChange={(event) => handlePrimaryColorChange(index, event)}
                 sx={{
                   marginTop: 0,
                   width: 200,
                   height: 42,
                 }}
                 displayEmpty
+                value={dropdownValue}
+                onChange={handleDropdownChange}
               >
-                <MenuItem value="" disabled>
-                  Select
-                </MenuItem>
-                <MenuItem value="String1">String1</MenuItem>
-                <MenuItem value="String2">String2</MenuItem>
-                <MenuItem value="String3">String3</MenuItem>
-                <MenuItem value="String4">String4</MenuItem>
-                <MenuItem value="String5">String5</MenuItem>
-                <MenuItem value="String6">String6</MenuItem>
-                <MenuItem value="String7">String7</MenuItem>
-                <MenuItem value="String8">String8</MenuItem>
-                <MenuItem value="String9">String9</MenuItem>
-                <MenuItem value="String10">String10</MenuItem>
-              </Select>
-
-              <Select
-                value={refChannel[index] || ""}
-                onChange={(event) => handleRefChannelChange(index, event)}
-                sx={{
-                  marginTop: 0,
-                  width: 200,
-                  height: 43,
-                }}
-                displayEmpty
-              >
-                <MenuItem value="" disabled>
-                  Select
-                </MenuItem>
-                <MenuItem value="String1">String1</MenuItem>
-                <MenuItem value="String2">String2</MenuItem>
-                <MenuItem value="String3">String3</MenuItem>
-                <MenuItem value="String4">String4</MenuItem>
-                <MenuItem value="String5">String5</MenuItem>
-                <MenuItem value="String6">String6</MenuItem>
-                <MenuItem value="String7">String7</MenuItem>
-                <MenuItem value="String8">String8</MenuItem>
-                <MenuItem value="String9">String9</MenuItem>
-                <MenuItem value="String10">String10</MenuItem>
+                <option value="">Select an option</option>
+                {dropdownData.map((str) => (
+                  <MenuItem key={str} value={str}>
+                    {str}
+                  </MenuItem>
+                ))}
               </Select>
 
               <Box>
                 <Button
                   sx={{ fontSize: "14px" }}
-                  onClick={() => handleToggleDropdown(index)}
+                  onClick={(e) => {
+                    handleToggleDropdown(index);
+                  }}
                 >
                   <h4>
                     {dropdownOpen[index]
-                      ? "Hide Backup Channels"
-                      : "+ Add Backup Channels"}
+                      ? `Hide Backup Channels(${selectedOptions.length})`
+                      : selectedOptions.length === 0
+                      ? "+ Add Backup Channels"
+                      : selectedOptions.length > 0
+                      ? `View backup channels(${selectedOptions.length})`
+                      : ""}
                   </h4>
                 </Button>
               </Box>
@@ -137,67 +119,18 @@ const ChannelBox = () => {
               }}
               in={dropdownOpen[index]}
             >
-              <Box
-                sx={{
-                  marginTop: "10px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <FormControl sx={{ marginBottom: "10px" }}>
-                  <Select
-                    sx={{
-                      marginTop: 0,
-                      width: 200,
-                      height: 43,
-                    }}
-                    labelId={`primary-channel-label-${index}`}
-                    value={primaryChannel[index] || ""}
-                    onChange={(event) => handlePrimaryColorChange(index, event)}
-                  >
-                    <MenuItem value="" disabled>
-                      Select
-                    </MenuItem>
-                    <MenuItem value="String1">String1</MenuItem>
-                    <MenuItem value="String2">String2</MenuItem>
-                    <MenuItem value="String3">String3</MenuItem>
-                    <MenuItem value="String4">String4</MenuItem>
-                    <MenuItem value="String5">String5</MenuItem>
-                    <MenuItem value="String6">String6</MenuItem>
-                    <MenuItem value="String7">String7</MenuItem>
-                    <MenuItem value="String8">String8</MenuItem>
-                    <MenuItem value="String9">String9</MenuItem>
-                    <MenuItem value="String10">String10</MenuItem>
-                  </Select>
-                </FormControl>
-                <FormControl sx={{ marginBottom: "10px" }}>
-                  <Select
-                    sx={{
-                      marginTop: 0,
-                      width: 200,
-                      height: 43,
-                    }}
-                    labelId={`ref-channel-label-${index}`}
-                    value={refChannel[index] || ""}
-                    onChange={(event) => handleRefChannelChange(index, event)}
-                  >
-                    <MenuItem value="" disabled>
-                      Select
-                    </MenuItem>
-                    <MenuItem value="String1">String1</MenuItem>
-                    <MenuItem value="String2">String2</MenuItem>
-                    <MenuItem value="String3">String3</MenuItem>
-                    <MenuItem value="String4">String4</MenuItem>
-                    <MenuItem value="String5">String5</MenuItem>
-                    <MenuItem value="String6">String6</MenuItem>
-                    <MenuItem value="String7">String7</MenuItem>
-                    <MenuItem value="String8">String8</MenuItem>
-                    <MenuItem value="String9">String9</MenuItem>
-                    <MenuItem value="String10">String10</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+              <div>
+                <div>
+                  <h3>Selected Options:</h3>
+                  {selectedOptions.length === 0 && <p>No options selected.</p>}
+                  {selectedOptions.map((str) => (
+                    <p key={str}>{str}</p>
+                  ))}
+                </div>
+              </div>
+              <Button sx={{ fontSize: "14px" }} onClick={handleAddOption}>
+                <h4>+ Add Backup Channels</h4>
+              </Button>
             </Collapse>
           </Box>
         ))}
@@ -207,3 +140,12 @@ const ChannelBox = () => {
 };
 
 export default ChannelBox;
+
+// - Create on JSON to generate all channels
+// - create a dropdown menu componenet, with selected value as prop
+// - create a box component
+// - put dropdown inside box component
+// - create collapse component
+// - put it inside box componenet
+// - take a prop from box to render ;
+// -

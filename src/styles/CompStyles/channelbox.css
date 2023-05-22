@@ -1,3 +1,7 @@
 .map_channels h4 {
   margin: 0px 40px 0px 40px;
 }
+
+.delete {
+  color: #ff0000;
+}
