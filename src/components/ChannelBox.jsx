@@ -9,6 +9,8 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Typography,
+  Checkbox,
 } from "@mui/material";
 import jsonData from "../data/schema.json";
 import stringsData from "../data/string.json";
@@ -22,6 +24,15 @@ const ChannelBox = () => {
   const storedChannelsData = localStorage.getItem("channelsData");
   const channelData = storedChannelsData ? JSON.parse(storedChannelsData) : [];
   console.log(channelData);
+
+  useEffect(() => {
+    const optionsData = jsonData.optionals;
+    localStorage.setItem("optionsData", JSON.stringify(optionsData));
+  }, []);
+
+  const storedOptionData = localStorage.getItem("optionsData");
+  const optionData = storedOptionData ? JSON.parse(storedOptionData) : [];
+  console.log(optionData);
 
   useEffect(() => {
     const stringData = stringsData.strings;
@@ -90,8 +101,38 @@ const ChannelBox = () => {
     setDropdownOpen(updatedDropdownOpen);
   };
 
+  const handleDeleteData = (channelIndex, optionIndex) => {
+    const updatedSelectedOptions = { ...selectedOptions };
+    const channelOptions = updatedSelectedOptions[channelIndex];
+    if (channelOptions && channelOptions.length > optionIndex) {
+      channelOptions.splice(optionIndex, 1); // Remove the specific option from the array
+      setSelectedOptions(updatedSelectedOptions);
+    }
+  };
+
   return (
     <div className="map_channels">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          backgroundColor: "#E5F3FF",
+          margin: "30px 0px 0px 0px",
+          paddingY: "10px",
+          paddingX: "5px",
+          borderRadius: "5px",
+        }}
+      >
+        <Typography sx={{ display: "flex", paddingLeft: "0px" }}>
+          <h4>Channel</h4>
+        </Typography>
+        <Typography sx={{ display: "flex", paddingLeft: "6%" }}>
+          <h4>Primary Channel</h4>
+        </Typography>
+        <Typography sx={{ display: "flex", paddingLeft: "6%" }}>
+          <h4>Reference Channel</h4>
+        </Typography>
+      </Box>
       <Box sx={{ marginTop: "30px" }}>
         {channelData.map((channel, index) => (
           <Box
@@ -139,7 +180,7 @@ const ChannelBox = () => {
                 value={dropdownValuesTwo[index]}
                 onChange={(event) => handleDropdownChangeTwo(event, index)}
               >
-                <option value="">Select an option</option>
+                <option value="">Select Channel</option>
                 {dropdownData.map((str) => (
                   <MenuItem key={str} value={str}>
                     {str}
@@ -182,13 +223,17 @@ const ChannelBox = () => {
             >
               <div>
                 <div>
-                  <h3>Selected Options:</h3>
-                  {selectedOptions[index]?.length === 0 && (
-                    <p>No options selected.</p>
-                  )}
+                  {/* {selectedOptions[index]?.length === 0 && (
+                    <p>Select Channel</p>
+                  )} */}
                   {selectedOptions[index]?.map((option, optionIndex) => (
                     <p key={optionIndex}>
                       {option.selectOne} {option.selectTwo}
+                      <Button
+                        onClick={() => handleDeleteData(index, optionIndex)}
+                      >
+                        Delete
+                      </Button>
                     </p>
                   ))}
                 </div>
@@ -200,6 +245,41 @@ const ChannelBox = () => {
                 <h4>+ Add Backup Channels</h4>
               </Button>
             </Collapse>
+          </Box>
+        ))}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          backgroundColor: "#ffffff",
+          marginTop: "30px",
+          paddingY: "20px",
+          borderRadius: "5px",
+        }}
+      >
+        <Typography
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <h4>Additional Settings</h4>
+        </Typography>
+        {optionData.map((option, index) => (
+          <Box sx={{ display: "flex", alignItems: "center" }} key={index}>
+            {option.optional1 && (
+              <h4>
+                <Checkbox defaultChecked />
+                Optional 1{/* {option.optional1.toString()} */}
+              </h4>
+            )}
+            {option.optional2 && (
+              <h4>
+                <Checkbox defaultChecked />
+                Optional 2{/* {option.optional2.toString()} */}
+              </h4>
+            )}
           </Box>
         ))}
       </Box>
