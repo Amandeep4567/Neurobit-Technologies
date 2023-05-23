@@ -1,13 +1,12 @@
-import "../styles/pageStyles/mapchannels.css";
-import React, { useState } from "react";
+import React from "react";
 import { Sidebar } from "../components";
 import { Box } from "@mui/system";
 import { Toolbar } from "@mui/material";
-import { Stepper, BackNext, ChannelBox } from "../components/index";
+import { Stepper, BackNext, PreviewBox } from "../components/index";
 
-const drawerWidth = 240;
+const drawerWidth = 224;
 
-const MapChannels = () => {
+const PreviewConfig = () => {
   return (
     <div>
       <Sidebar />
@@ -21,9 +20,9 @@ const MapChannels = () => {
               width: { sm: `calc(100% - ${drawerWidth}px)` },
             }}
           >
-            <Stepper stepvalue="1" />
-            <ChannelBox />
-            <BackNext backlink="/" forwardlink="/preview-config" />
+            <Stepper stepvalue="3" />
+            <PreviewBox />
+            <BackNext backlink="/map-channels" forwardlink="/preview-config" />
 
             <Toolbar />
           </Box>
@@ -33,4 +32,4 @@ const MapChannels = () => {
   );
 };
 
-export default MapChannels;
+export default PreviewConfig;

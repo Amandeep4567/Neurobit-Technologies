@@ -3,13 +3,6 @@ import Stepper from "./Stepper";
 import DropdownBox from "./DropdownBox";
 import BackNext from "./BackNext";
 import ChannelBox from "./ChannelBox";
-import CollapsableAccordion from "./CollapsableAccordion";
+import PreviewBox from "./PreviewBox";
 
-export {
-  Sidebar,
-  Stepper,
-  DropdownBox,
-  BackNext,
-  ChannelBox,
-  CollapsableAccordion,
-};
+export { Sidebar, Stepper, DropdownBox, BackNext, ChannelBox, PreviewBox };

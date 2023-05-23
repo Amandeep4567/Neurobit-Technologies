@@ -12,8 +12,10 @@ import {
   Typography,
   Checkbox,
 } from "@mui/material";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import jsonData from "../data/schema.json";
 import stringsData from "../data/string.json";
+import { display } from "@mui/system";
 
 const ChannelBox = () => {
   useEffect(() => {
@@ -221,23 +223,71 @@ const ChannelBox = () => {
               }}
               in={dropdownOpen[index]}
             >
-              <div>
-                <div>
+              <Box sx={{ paddingLeft: "30px" }}>
+                <Box
+                  sx={{
+                    paddingY: "10px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   {/* {selectedOptions[index]?.length === 0 && (
                     <p>Select Channel</p>
                   )} */}
                   {selectedOptions[index]?.map((option, optionIndex) => (
-                    <p key={optionIndex}>
-                      {option.selectOne} {option.selectTwo}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        paddingY: "5px",
+                      }}
+                      key={optionIndex}
+                    >
+                      <Typography
+                        sx={{
+                          marginTop: 0,
+                          width: 200,
+                          height: 42,
+                          bgcolor: "#EAEAEA",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: "5px",
+                          marginLeft: "18%",
+                        }}
+                      >
+                        <h4>{option.selectOne}</h4>
+                      </Typography>
+                      <Typography
+                        sx={{
+                          marginTop: 0,
+                          width: 200,
+                          height: 42,
+                          bgcolor: "#EAEAEA",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: "5px",
+                          marginLeft: "7%",
+                        }}
+                      >
+                        <h4>{option.selectTwo}</h4>
+                      </Typography>
                       <Button
+                        sx={{
+                          marginLeft: "10%",
+                          color: "red",
+                          fontSize: "12px",
+                        }}
                         onClick={() => handleDeleteData(index, optionIndex)}
                       >
-                        Delete
+                        <DeleteOutlineIcon /> Delete
                       </Button>
-                    </p>
+                    </Box>
                   ))}
-                </div>
-              </div>
+                </Box>
+              </Box>
               <Button
                 sx={{ fontSize: "14px" }}
                 onClick={() => handleAddOption(index)}

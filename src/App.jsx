@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Homepage } from "./pages";
+import { Homepage, PreviewConfig } from "./pages";
 import MapChannels from "./pages/MapChannels";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/map-channels" element={<MapChannels />} />
+        <Route path="/preview-config" element={<PreviewConfig />} />
       </Routes>
     </BrowserRouter>
   );
