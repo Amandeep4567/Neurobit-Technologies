@@ -18,29 +18,67 @@ const ChannelBox = () => {
     const channelsData = jsonData.channels;
     localStorage.setItem("channelsData", JSON.stringify(channelsData));
   }, []);
-  const stoString1Data = localStorage.getItem("channelsData");
-  const channelData = JSON.parse(stoString1Data);
+
+  const storedChannelsData = localStorage.getItem("channelsData");
+  const channelData = storedChannelsData ? JSON.parse(storedChannelsData) : [];
   console.log(channelData);
 
   useEffect(() => {
     const stringData = stringsData.strings;
     localStorage.setItem("stringData", JSON.stringify(stringData));
   }, []);
-  const storeStringData = localStorage.getItem("stringData");
-  const dropdownData = JSON.parse(storeStringData);
+  const storedStringData = localStorage.getItem("stringData");
+  const dropdownData = JSON.parse(storedStringData);
 
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [dropdownValue, setDropdownValue] = useState("");
+  const [dropdownValues, setDropdownValues] = useState(
+    Array(channelData.length).fill("")
+  );
+  const [dropdownValuesTwo, setDropdownValuesTwo] = useState(
+    Array(channelData.length).fill("")
+  );
 
-  const handleDropdownChange = (event) => {
+  const handleDropdownChange = (event, index) => {
     const selectedOption = event.target.value;
-    setDropdownValue(selectedOption); // setting selected option
+    const updatedDropdownValues = [...dropdownValues];
+    updatedDropdownValues[index] = selectedOption;
+    setDropdownValues(updatedDropdownValues);
   };
 
-  const handleAddOption = () => {
-    if (dropdownValue && !selectedOptions.includes(dropdownValue)) {
-      setSelectedOptions([...selectedOptions, dropdownValue]); // adding the selected option to array
-      setDropdownValue(""); // resetting selected option
+  const handleDropdownChangeTwo = (event, index) => {
+    const selectedOption = event.target.value;
+    const updatedDropdownValuesTwo = [...dropdownValuesTwo];
+    updatedDropdownValuesTwo[index] = selectedOption;
+    setDropdownValuesTwo(updatedDropdownValuesTwo);
+  };
+
+  const handleAddOption = (index) => {
+    const selectedOption = dropdownValues[index];
+    const selectedOptionTwo = dropdownValuesTwo[index];
+
+    if (
+      selectedOption &&
+      selectedOptionTwo &&
+      !selectedOptions[index]?.some(
+        (option) =>
+          option.selectOne === selectedOption &&
+          option.selectTwo === selectedOptionTwo
+      )
+    ) {
+      const updatedSelectedOptions = { ...selectedOptions };
+      updatedSelectedOptions[index] = [
+        ...(selectedOptions[index] || []),
+        { selectOne: selectedOption, selectTwo: selectedOptionTwo },
+      ];
+      setSelectedOptions(updatedSelectedOptions);
+
+      const updatedDropdownValues = [...dropdownValues];
+      updatedDropdownValues[index] = ""; // Resetting the first select component
+      setDropdownValues(updatedDropdownValues);
+
+      const updatedDropdownValuesTwo = [...dropdownValuesTwo];
+      updatedDropdownValuesTwo[index] = ""; // Resetting the second select component
+      setDropdownValuesTwo(updatedDropdownValuesTwo);
     }
   };
 
@@ -81,8 +119,25 @@ const ChannelBox = () => {
                   height: 42,
                 }}
                 displayEmpty
-                value={dropdownValue}
-                onChange={handleDropdownChange}
+                value={dropdownValues[index]}
+                onChange={(event) => handleDropdownChange(event, index)}
+              >
+                <option value="">Select an option</option>
+                {dropdownData.map((str) => (
+                  <MenuItem key={str} value={str}>
+                    {str}
+                  </MenuItem>
+                ))}
+              </Select>
+              <Select
+                sx={{
+                  marginTop: 0,
+                  width: 200,
+                  height: 42,
+                }}
+                displayEmpty
+                value={dropdownValuesTwo[index]}
+                onChange={(event) => handleDropdownChangeTwo(event, index)}
               >
                 <option value="">Select an option</option>
                 {dropdownData.map((str) => (
@@ -100,13 +155,19 @@ const ChannelBox = () => {
                   }}
                 >
                   <h4>
-                    {dropdownOpen[index]
-                      ? `Hide Backup Channels(${selectedOptions.length})`
-                      : selectedOptions.length === 0
-                      ? "+ Add Backup Channels"
-                      : selectedOptions.length > 0
-                      ? `View backup channels(${selectedOptions.length})`
-                      : ""}
+                    {dropdownOpen[index] ? (
+                      `Hide Backup Channels (${
+                        selectedOptions[index]?.length || 0
+                      })`
+                    ) : (
+                      <>
+                        {selectedOptions[index]?.length || 0
+                          ? `View Backup Channels (${
+                              selectedOptions[index]?.length || 0
+                            })`
+                          : "+ Add Backup Channels"}
+                      </>
+                    )}
                   </h4>
                 </Button>
               </Box>
@@ -122,13 +183,20 @@ const ChannelBox = () => {
               <div>
                 <div>
                   <h3>Selected Options:</h3>
-                  {selectedOptions.length === 0 && <p>No options selected.</p>}
-                  {selectedOptions.map((str) => (
-                    <p key={str}>{str}</p>
+                  {selectedOptions[index]?.length === 0 && (
+                    <p>No options selected.</p>
+                  )}
+                  {selectedOptions[index]?.map((option, optionIndex) => (
+                    <p key={optionIndex}>
+                      {option.selectOne} {option.selectTwo}
+                    </p>
                   ))}
                 </div>
               </div>
-              <Button sx={{ fontSize: "14px" }} onClick={handleAddOption}>
+              <Button
+                sx={{ fontSize: "14px" }}
+                onClick={() => handleAddOption(index)}
+              >
                 <h4>+ Add Backup Channels</h4>
               </Button>
             </Collapse>
@@ -140,12 +208,3 @@ const ChannelBox = () => {
 };
 
 export default ChannelBox;
-
-// - Create on JSON to generate all channels
-// - create a dropdown menu componenet, with selected value as prop
-// - create a box component
-// - put dropdown inside box component
-// - create collapse component
-// - put it inside box componenet
-// - take a prop from box to render ;
-// -
