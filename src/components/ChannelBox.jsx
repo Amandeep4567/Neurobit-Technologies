@@ -85,6 +85,17 @@ const ChannelBox = () => {
       ];
       setSelectedOptions(updatedSelectedOptions);
 
+      // Update local storage
+      const storedSelectedOptions = localStorage.getItem("selectedOptions");
+      const selectedOptionsData = storedSelectedOptions
+        ? JSON.parse(storedSelectedOptions)
+        : [];
+      selectedOptionsData[index] = updatedSelectedOptions[index];
+      localStorage.setItem(
+        "selectedOptions",
+        JSON.stringify(selectedOptionsData)
+      );
+
       const updatedDropdownValues = [...dropdownValues];
       updatedDropdownValues[index] = ""; // Resetting the first select component
       setDropdownValues(updatedDropdownValues);
@@ -92,8 +103,21 @@ const ChannelBox = () => {
       const updatedDropdownValuesTwo = [...dropdownValuesTwo];
       updatedDropdownValuesTwo[index] = ""; // Resetting the second select component
       setDropdownValuesTwo(updatedDropdownValuesTwo);
+
+      localStorage.setItem(
+        "selectedOptions",
+        JSON.stringify(updatedSelectedOptions)
+      );
     }
   };
+
+  useEffect(() => {
+    const storedSelectedOptions = localStorage.getItem("selectedOptions");
+    const initialSelectedOptions = storedSelectedOptions
+      ? JSON.parse(storedSelectedOptions)
+      : {};
+    setSelectedOptions(initialSelectedOptions);
+  }, []);
 
   const [dropdownOpen, setDropdownOpen] = useState([]);
 
@@ -109,15 +133,26 @@ const ChannelBox = () => {
     if (channelOptions && channelOptions.length > optionIndex) {
       channelOptions.splice(optionIndex, 1); // Remove the specific option from the array
       setSelectedOptions(updatedSelectedOptions);
+
+      // Update local storage
+      const storedSelectedOptions = localStorage.getItem("selectedOptions");
+      const selectedOptionsData = storedSelectedOptions
+        ? JSON.parse(storedSelectedOptions)
+        : [];
+      selectedOptionsData[channelIndex] = channelOptions;
+      localStorage.setItem(
+        "selectedOptions",
+        JSON.stringify(selectedOptionsData)
+      );
     }
   };
-
   return (
     <div className="map_channels">
       <Box
         sx={{
           display: "flex",
           justifyContent: "flex-start",
+          alignItems: "flex-start",
           backgroundColor: "#E5F3FF",
           margin: "30px 0px 0px 0px",
           paddingY: "10px",

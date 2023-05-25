@@ -38,14 +38,23 @@ const PreviewBox = () => {
           <h4>Reference Channel</h4>
         </Typography>
       </Box>
-      {channelData.map((channel, index) => (
-        <Box key={index}>
-          {channel}
-          <>
-            <EditButton backlink="/map-channels" />
-          </>
-        </Box>
-      ))}
+      <Box sx={{ marginTop: "30px" }}>
+        {channelData.map((channel, index) => (
+          <Box
+            key={index}
+            sx={{
+              backgroundColor: "#ffffff",
+              marginBottom: "10px",
+              borderRadius: "5px",
+            }}
+          >
+            {channel}
+            <>
+              <EditButton backlink="/map-channels" />
+            </>
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 };

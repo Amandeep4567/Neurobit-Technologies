@@ -20,7 +20,7 @@ const PreviewConfig = () => {
               width: { sm: `calc(100% - ${drawerWidth}px)` },
             }}
           >
-            <Stepper stepvalue="3" />
+            <Stepper stepvalue="2" />
             <PreviewBox />
             <BackNext backlink="/map-channels" forwardlink="/preview-config" />
 
