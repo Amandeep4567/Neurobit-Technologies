@@ -23,7 +23,11 @@ const Homepage = () => {
             >
               <Stepper stepvalue="0" />
               <DropdownBox />
-              <BackNext backlink="/" forwardlink="/map-channels" />
+              <BackNext
+                backlink="/"
+                forwardlink="/map-channels"
+                stepvalue="0"
+              />
 
               <Toolbar />
             </Box>

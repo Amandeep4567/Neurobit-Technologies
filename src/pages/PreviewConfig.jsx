@@ -22,7 +22,11 @@ const PreviewConfig = () => {
           >
             <Stepper stepvalue="2" />
             <PreviewBox />
-            <BackNext backlink="/map-channels" forwardlink="/preview-config" />
+            <BackNext
+              backlink="/map-channels"
+              forwardlink="/preview-config"
+              stepvalue="2"
+            />
 
             <Toolbar />
           </Box>

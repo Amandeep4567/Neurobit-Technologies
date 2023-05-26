@@ -32,6 +32,7 @@ const MapChannels = () => {
             <ChannelBox />
             <BackNext
               backlink="/"
+              stepvalue="1"
               forwardlink="/preview-config"
               onClick={handleNextButtonClick}
             />
