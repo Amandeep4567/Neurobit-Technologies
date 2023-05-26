@@ -1,11 +1,30 @@
 import React from "react";
 import { Box } from "@mui/system";
 import { Typography, Button } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import EditButton from "./EditButton";
 import jsonData from "../data/schema.json";
 
 const PreviewBox = () => {
+  const location = useLocation();
+
+  const storedSelectedOptions = localStorage.getItem("selectedOptions");
+  const initialSelectedOptions = storedSelectedOptions
+    ? JSON.parse(storedSelectedOptions)
+    : {};
+  const [selectedOptions, setSelectedOptions] = useState(
+    initialSelectedOptions
+  );
+
+  useEffect(() => {
+    const storedSelectedOptions = localStorage.getItem("selectedOptions");
+    const initialSelectedOptions = storedSelectedOptions
+      ? JSON.parse(storedSelectedOptions)
+      : {};
+    setSelectedOptions(initialSelectedOptions);
+  }, [location]);
+
   useEffect(() => {
     const channelsData = jsonData.channels;
     localStorage.setItem("channelsData", JSON.stringify(channelsData));
@@ -46,12 +65,54 @@ const PreviewBox = () => {
               backgroundColor: "#ffffff",
               marginBottom: "10px",
               borderRadius: "5px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingX: "20px",
             }}
           >
-            {channel}
-            <>
+            <h4>{channel}</h4>
+            <Typography
+              sx={{
+                marginTop: 0,
+                width: 200,
+                bgcolor: "#EAEAEA",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: "5px",
+              }}
+            >
+              {selectedOptions[index]?.length > 0 && (
+                <ul>
+                  {selectedOptions[index]?.map((option, optionIndex) => (
+                    <li key={optionIndex}>{option.selectOne}</li>
+                  ))}
+                </ul>
+              )}
+            </Typography>
+            <Typography
+              sx={{
+                marginTop: 0,
+                width: 200,
+                bgcolor: "#EAEAEA",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: "5px",
+              }}
+            >
+              {selectedOptions[index]?.length > 0 && (
+                <ul>
+                  {selectedOptions[index]?.map((option, optionIndex) => (
+                    <li key={optionIndex}>{option.selectTwo}</li>
+                  ))}
+                </ul>
+              )}
+            </Typography>
+            <Button>
               <EditButton backlink="/map-channels" />
-            </>
+            </Button>
           </Box>
         ))}
       </Box>

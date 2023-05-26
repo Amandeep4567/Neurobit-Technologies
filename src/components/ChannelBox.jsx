@@ -1,6 +1,7 @@
 import "../styles/CompStyles/channelbox.css";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -18,6 +19,13 @@ import stringsData from "../data/string.json";
 import { display } from "@mui/system";
 
 const ChannelBox = () => {
+  const navigate = useNavigate();
+
+  const handleNextButtonClick = () => {
+    // Navigate to the preview page
+    navigate("/preview-config");
+  };
+
   useEffect(() => {
     const channelsData = jsonData.channels;
     localStorage.setItem("channelsData", JSON.stringify(channelsData));
@@ -368,6 +376,9 @@ const ChannelBox = () => {
           </Box>
         ))}
       </Box>
+      <Button variant="contained" onClick={handleNextButtonClick}>
+        Next
+      </Button>
     </div>
   );
 };
