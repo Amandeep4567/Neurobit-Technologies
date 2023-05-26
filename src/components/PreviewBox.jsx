@@ -72,14 +72,19 @@ const PreviewBox = () => {
               paddingY: "10px",
             }}
           >
-            <Typography
-              sx={{
-                fontSize: "17px",
-                fontWeight: "bold",
-              }}
-            >
+            <h4>
               {channel}
-            </Typography>
+              <Box
+                sx={{
+                  fontSize: "11px",
+                  fontWeight: "100",
+                  color: "#8A8A8A",
+                  marginTop: "30px",
+                }}
+              >
+                {selectedOptions[index]?.length > 1 ? "Backup Channels" : ""}
+              </Box>
+            </h4>
             <Typography>
               {selectedOptions[index]?.length > 0 && (
                 <Box>
