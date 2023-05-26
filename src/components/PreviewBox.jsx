@@ -42,7 +42,7 @@ const PreviewBox = () => {
           justifyContent: "flex-start",
           backgroundColor: "#E5F3FF",
           margin: "30px 0px 0px 0px",
-          paddingY: "10px",
+          paddingY: " 10px",
           paddingX: "5px",
           borderRadius: "5px",
         }}
@@ -69,48 +69,59 @@ const PreviewBox = () => {
               justifyContent: "space-between",
               alignItems: "center",
               paddingX: "20px",
+              paddingY: "10px",
             }}
           >
             <h4>{channel}</h4>
-            <Typography
-              sx={{
-                marginTop: 0,
-                width: 200,
-                bgcolor: "#EAEAEA",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: "5px",
-              }}
-            >
+            <Typography>
               {selectedOptions[index]?.length > 0 && (
-                <ul>
+                <Box>
                   {selectedOptions[index]?.map((option, optionIndex) => (
-                    <li key={optionIndex}>{option.selectOne}</li>
+                    <Typography
+                      sx={{
+                        marginTop: 0,
+                        width: 200,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "5px",
+                        bgcolor: "#EAEAEA",
+                        paddingY: "10px",
+                        marginY: "10px",
+                      }}
+                      key={optionIndex}
+                    >
+                      <h4>{option.selectOne}</h4>
+                    </Typography>
                   ))}
-                </ul>
+                </Box>
               )}
             </Typography>
-            <Typography
-              sx={{
-                marginTop: 0,
-                width: 200,
-                bgcolor: "#EAEAEA",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: "5px",
-              }}
-            >
+            <Typography>
               {selectedOptions[index]?.length > 0 && (
-                <ul>
+                <Box>
                   {selectedOptions[index]?.map((option, optionIndex) => (
-                    <li key={optionIndex}>{option.selectTwo}</li>
+                    <Typography
+                      sx={{
+                        marginTop: 0,
+                        width: 200,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "5px",
+                        bgcolor: "#EAEAEA",
+                        paddingY: "10px",
+                        marginY: "10px",
+                      }}
+                      key={optionIndex}
+                    >
+                      <h4>{option.selectTwo}</h4>
+                    </Typography>
                   ))}
-                </ul>
+                </Box>
               )}
             </Typography>
-            <Button>
+            <Button sx={{ border: "1px solid #19A0E4" }}>
               <EditButton backlink="/map-channels" />
             </Button>
           </Box>

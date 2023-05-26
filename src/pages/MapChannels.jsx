@@ -4,10 +4,17 @@ import { Sidebar } from "../components";
 import { Box } from "@mui/system";
 import { Toolbar } from "@mui/material";
 import { Stepper, BackNext, ChannelBox } from "../components/index";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
 const MapChannels = () => {
+  const navigate = useNavigate();
+
+  const handleNextButtonClick = () => {
+    // Navigate to the preview page
+    navigate("/preview-config");
+  };
   return (
     <div>
       <Sidebar />
@@ -21,9 +28,13 @@ const MapChannels = () => {
               width: { sm: `calc(100% - ${drawerWidth}px)` },
             }}
           >
-            <Stepper stepvalue="1" />
+            <Stepper stepvalue="2" />
             <ChannelBox />
-            <BackNext backlink="/" forwardlink="/preview-config" />
+            <BackNext
+              backlink="/"
+              forwardlink="/preview-config"
+              onClick={handleNextButtonClick}
+            />
 
             <Toolbar />
           </Box>

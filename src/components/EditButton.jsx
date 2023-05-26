@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 const EditButton = (props) => {
   return (
     <Link to={props.backlink}>
-      <Button sx={{ fontSize: "14px" }}>
-        <h4>Edit Channel</h4>
-      </Button>
+      <Button sx={{ fontSize: "13px" }}>Edit Channel</Button>
     </Link>
   );
 };

@@ -16,9 +16,6 @@ import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { bgcolor, fontSize, height, textAlign } from "@mui/system";
-import { DropdownBox, Stepper, BackNext } from ".";
-import { FormatAlignJustify, Opacity, WrapText } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
