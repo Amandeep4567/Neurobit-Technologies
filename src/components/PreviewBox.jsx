@@ -67,12 +67,19 @@ const PreviewBox = () => {
               borderRadius: "5px",
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
+              alignItems: "baseline",
               paddingX: "20px",
               paddingY: "10px",
             }}
           >
-            <h4>{channel}</h4>
+            <Typography
+              sx={{
+                fontSize: "17px",
+                fontWeight: "bold",
+              }}
+            >
+              {channel}
+            </Typography>
             <Typography>
               {selectedOptions[index]?.length > 0 && (
                 <Box>
@@ -85,7 +92,8 @@ const PreviewBox = () => {
                         justifyContent: "center",
                         alignItems: "center",
                         borderRadius: "5px",
-                        bgcolor: "#EAEAEA",
+                        bgcolor: optionIndex > 0 ? "#FAFAFA" : "#EEEEEE",
+                        color: optionIndex > 0 ? "#8A8A8A" : "#000000",
                         paddingY: "10px",
                         marginY: "10px",
                       }}
@@ -109,7 +117,8 @@ const PreviewBox = () => {
                         justifyContent: "center",
                         alignItems: "center",
                         borderRadius: "5px",
-                        bgcolor: "#EAEAEA",
+                        bgcolor: optionIndex > 0 ? "#FAFAFA" : "#EEEEEE",
+                        color: optionIndex > 0 ? "#8A8A8A" : "#000000",
                         paddingY: "10px",
                         marginY: "10px",
                       }}
@@ -121,7 +130,13 @@ const PreviewBox = () => {
                 </Box>
               )}
             </Typography>
-            <Button sx={{ border: "1px solid #19A0E4" }}>
+            <Button
+              sx={{
+                border: "1px solid #19A0E4",
+                display: "flex",
+                alignSelf: "center",
+              }}
+            >
               <EditButton backlink="/map-channels" />
             </Button>
           </Box>

@@ -18,13 +18,6 @@ import stringsData from "../data/string.json";
 import { display } from "@mui/system";
 
 const ChannelBox = () => {
-  // const navigate = useNavigate();
-
-  // const handleNextButtonClick = () => {
-  //   // Navigate to the preview page
-  //   navigate("/preview-config");
-  // };
-
   useEffect(() => {
     const channelsData = jsonData.channels;
     localStorage.setItem("channelsData", JSON.stringify(channelsData));
