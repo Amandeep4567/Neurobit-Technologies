@@ -20,6 +20,6 @@ Have a Look👨‍💻: https://neurobit-technologies.vercel.app
   <h5>-> npm install @mui/material @emotion/react @emotion/styled</h5>
   
 <h3>6. To run the application locally, execute the following command<h3/>
-  <h5>-> npm start</h5>
+  <h5>-> npm start / npm run dev</h5>
   
 <h5>The application will be available at http://localhost:3000.</h5>
