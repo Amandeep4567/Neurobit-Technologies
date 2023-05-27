@@ -2,11 +2,11 @@ import React from "react";
 import { Sidebar } from "../components";
 import { Box } from "@mui/system";
 import { Toolbar } from "@mui/material";
-import { Stepper, BackNext, PreviewBox } from "../components/index";
+import { Stepper, PreviewBox } from "../components/index";
 
 const drawerWidth = 224;
 
-const PreviewConfig = () => {
+const SavedConfig = () => {
   return (
     <div>
       <Sidebar />
@@ -20,13 +20,8 @@ const PreviewConfig = () => {
               width: { sm: `calc(100% - ${drawerWidth}px)` },
             }}
           >
-            <Stepper stepvalue="2" />
+            <Stepper stepvalue="3" />
             <PreviewBox />
-            <BackNext
-              backlink="/map-channels"
-              forwardlink="/saved-config"
-              stepvalue="2"
-            />
 
             <Toolbar />
           </Box>
@@ -36,4 +31,4 @@ const PreviewConfig = () => {
   );
 };
 
-export default PreviewConfig;
+export default SavedConfig;

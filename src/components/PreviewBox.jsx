@@ -3,8 +3,8 @@ import { Box } from "@mui/system";
 import { Typography, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import EditButton from "./EditButton";
 import jsonData from "../data/schema.json";
+import { Link } from "react-router-dom";
 
 const PreviewBox = () => {
   const location = useLocation();
@@ -135,15 +135,19 @@ const PreviewBox = () => {
                 </Box>
               )}
             </Typography>
-            <Button
-              sx={{
-                border: "1px solid #19A0E4",
-                display: "flex",
-                alignSelf: "center",
-              }}
-            >
-              <EditButton backlink="/map-channels" />
-            </Button>
+            <Box sx={{ display: "flex", alignSelf: "center" }}>
+              <Link to="/map-channels">
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontSize: "13px",
+                    padding: "10px",
+                  }}
+                >
+                  Edit Channel
+                </Button>
+              </Link>
+            </Box>
           </Box>
         ))}
       </Box>
