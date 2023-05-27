@@ -5,8 +5,17 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BackNext = (props) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleSaveClick = () => {
+    localStorage.setItem("disableEditButtons", JSON.stringify(true));
+    navigate(props.forwardlink);
+  };
+
   return (
     <div className="bottom_section">
       <Box
@@ -37,8 +46,9 @@ const BackNext = (props) => {
               backgroundColor: props.stepvalue === "2" ? "#10A44B" : "#2F7EC7",
             }}
             className={props.stepvalue === "2" ? "save-button" : ""}
+            onClick={handleSaveClick}
           >
-            {props.stepvalue === "2" ? "Save" : "Next"}
+            {props.stepvalue === "2" ? `Save` : "Next"}
           </Button>
         </Link>
       </Box>

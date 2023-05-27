@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { Typography, Button } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import jsonData from "../data/schema.json";
-import { Link } from "react-router-dom";
 
 const PreviewBox = () => {
   const location = useLocation();
@@ -32,7 +30,6 @@ const PreviewBox = () => {
 
   const storedChannelsData = localStorage.getItem("channelsData");
   const channelData = storedChannelsData ? JSON.parse(storedChannelsData) : [];
-  console.log(channelData);
 
   return (
     <Box>
@@ -74,7 +71,7 @@ const PreviewBox = () => {
           >
             <h4>
               {channel}
-              <Box
+              <Typography
                 sx={{
                   fontSize: "11px",
                   fontWeight: "100",
@@ -83,7 +80,7 @@ const PreviewBox = () => {
                 }}
               >
                 {selectedOptions[index]?.length > 1 ? "Backup Channels" : ""}
-              </Box>
+              </Typography>
             </h4>
             <Typography>
               {selectedOptions[index]?.length > 0 && (
@@ -136,17 +133,30 @@ const PreviewBox = () => {
               )}
             </Typography>
             <Box sx={{ display: "flex", alignSelf: "center" }}>
-              <Link to="/map-channels">
+              {location.pathname === "/saved-config" ? (
                 <Button
                   variant="outlined"
                   sx={{
                     fontSize: "13px",
                     padding: "10px",
                   }}
+                  disabled
                 >
                   Edit Channel
                 </Button>
-              </Link>
+              ) : (
+                <Link to="/map-channels">
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      fontSize: "13px",
+                      padding: "10px",
+                    }}
+                  >
+                    Edit Channel
+                  </Button>
+                </Link>
+              )}
             </Box>
           </Box>
         ))}
