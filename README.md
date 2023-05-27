@@ -5,7 +5,7 @@ Have a Look👨‍💻: https://neurobit-technologies.vercel.app
 <h2>These instructions will guide you on how to set up and run the project<h2/>
 
 <h4>1. Clone the repository from the given link<h4/>
-  Link: https://github.com/Amandeep4567/Neurobit-Technologies.git
+  <h5>Link: https://github.com/Amandeep4567/Neurobit-Technologies.git</h5>
 
 <h4>2. Navigate to the project directory<h4/>
   -> cd Neurobit-Technologies
