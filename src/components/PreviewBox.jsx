@@ -40,17 +40,17 @@ const PreviewBox = () => {
           backgroundColor: "#E5F3FF",
           margin: "30px 0px 0px 0px",
           paddingY: " 10px",
-          paddingX: "5px",
+          paddingX: "20px",
           borderRadius: "5px",
         }}
       >
-        <Typography sx={{ display: "flex", paddingLeft: "0px" }}>
+        <Typography sx={{ display: "flex", width: "26%" }}>
           <h4>Channel</h4>
         </Typography>
-        <Typography sx={{ display: "flex", paddingLeft: "6%" }}>
+        <Typography sx={{ display: "flex", width: "33%" }}>
           <h4>Primary Channel</h4>
         </Typography>
-        <Typography sx={{ display: "flex", paddingLeft: "6%" }}>
+        <Typography sx={{ display: "flex", width: "30%" }}>
           <h4>Reference Channel</h4>
         </Typography>
       </Box>

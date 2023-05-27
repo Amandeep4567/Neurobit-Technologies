@@ -28,14 +28,32 @@ const BackNext = (props) => {
           justifyContent: "space-between",
         }}
       >
-        <Link to={props.backlink}>
-          <Button
-            variant="outlined"
-            sx={{ width: "100px", height: "50px", fontSize: "15px" }}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Link to={props.backlink}>
+            <Button
+              variant="outlined"
+              sx={{ width: "100px", height: "50px", fontSize: "15px" }}
+            >
+              Back
+            </Button>
+          </Link>
+          <Typography
+            sx={{
+              paddingLeft: "20px",
+              fontSize: "15px",
+              fontWeight: "600",
+              color: "#8A8A8A",
+            }}
           >
-            Back
-          </Button>
-        </Link>
+            Cancel Montage
+          </Typography>
+        </Box>
         <Link to={props.forwardlink}>
           <Button
             variant="contained"

@@ -27,7 +27,7 @@ function Sidebar() {
   };
 
   const drawer = (
-    <Box sx={{ overflowY: "hidden" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <div className="react_test">
         <Typography
           variant="h6"
@@ -37,7 +37,7 @@ function Sidebar() {
         </Typography>
       </div>
       <div className="line"></div>
-      <List>
+      <List sx={{ flexGrow: 1 }}>
         {["Dashboard", "Montages", "Credits"].map((text, index) => (
           <ListItem sx={{ color: "white" }} key={text} disablePadding>
             <ListItemButton
@@ -63,26 +63,25 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         ))}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            textAlign: "center",
-            bgcolor: "#02354F",
-            paddingY: "30px",
-            marginTop: "80%",
-            marginX: "10px",
-            color: "white",
-            lineHeight: "40px",
-            borderRadius: "4px",
-          }}
-        >
-          <div>
-            <Typography variant="h5">1,650</Typography>
-            <Typography variant="h7">Total Credits Available</Typography>
-          </div>
-        </Box>
       </List>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          textAlign: "center",
+          bgcolor: "#02354F",
+          paddingY: "30px",
+          marginX: "10px",
+          color: "white",
+          lineHeight: "40px",
+          borderRadius: "4px",
+          marginBottom: "20px",
+        }}
+      >
+        <Typography variant="h5">1,650</Typography>
+        <Typography variant="h7">Total Credits Available</Typography>
+      </Box>
     </Box>
   );
 
@@ -108,9 +107,6 @@ function Sidebar() {
               >
                 <MenuIcon style={{ display: "block" }} />
               </IconButton>
-              {/* <Typography variant="h6" noWrap component="div">
-              Responsive drawer
-            </Typography> */}
             </Toolbar>
           </div>
         </AppBar>
@@ -119,7 +115,6 @@ function Sidebar() {
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
           aria-label="mailbox folders"
         >
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Drawer
             variant="temporary"
             open={mobileOpen}

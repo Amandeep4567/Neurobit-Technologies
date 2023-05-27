@@ -156,17 +156,17 @@ const ChannelBox = () => {
           backgroundColor: "#E5F3FF",
           margin: "30px 0px 0px 0px",
           paddingY: "10px",
-          paddingX: "5px",
+          paddingX: "0px",
           borderRadius: "5px",
         }}
       >
-        <Typography sx={{ display: "flex", paddingLeft: "0px" }}>
+        <Typography sx={{ paddingLeft: "0px", width: "16%" }}>
           <h4>Channel</h4>
         </Typography>
-        <Typography sx={{ display: "flex", paddingLeft: "6%" }}>
+        <Typography sx={{ paddingLeft: "50px", width: "25%" }}>
           <h4>Primary Channel</h4>
         </Typography>
-        <Typography sx={{ display: "flex", paddingLeft: "6%" }}>
+        <Typography sx={{ paddingLeft: "50px", width: "28%" }}>
           <h4>Reference Channel</h4>
         </Typography>
       </Box>
