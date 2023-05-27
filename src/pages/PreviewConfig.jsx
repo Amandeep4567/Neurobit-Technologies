@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import { Toolbar } from "@mui/material";
 import { Stepper, BackNext, PreviewBox } from "../components/index";
 
-const drawerWidth = 224;
+const drawerWidth = 240;
 
 const PreviewConfig = () => {
   return (
