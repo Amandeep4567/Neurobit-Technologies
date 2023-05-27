@@ -28,7 +28,7 @@ const MapChannels = () => {
               width: { sm: `calc(100% - ${drawerWidth}px)` },
             }}
           >
-            <Stepper stepvalue="2" />
+            <Stepper stepvalue="1" />
             <ChannelBox />
             <BackNext
               backlink="/"
